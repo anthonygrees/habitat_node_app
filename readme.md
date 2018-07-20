@@ -25,6 +25,101 @@ const server = http.createServer((req, res)=> {
 });
 
 server.listen(port, hostname, () => {
-    console.log('Server running as http://${hostname}:${port}
+    console.log('Server running as http://${hostname}:${port}')
 });
 ```
+
+Now run the app
+```bash
+$ node app.js
+```
+Open your browser at http://0.0.0.0:3000
+
+### Make a Plan !
+Create the habitat plan and hab directory
+```bash
+$ hab plan init
+```
+
+Modify the following lines in the plan.sh
+```bash
+# comment out
+# pkg_source="http://some_source_url/releases/${pkg_name}-${pkg_version}.tar.gz"
+
+# set the following 
+pkg_deps=(core/node)
+pkg_build_deps=(core/make core/gcc)
+
+# define how to build
+do_build() {
+    cp -vr $PLAN_CONTEXT/../app.js $CACHE_PATH
+}
+
+# define how to install
+do_install() {
+    cp $CACHE_PATH/app.js ${pkg_prefix}
+}
+```
+### Build your app
+Build in hab studio which uses a docker container clean room.
+
+```bash
+$ hab studio enter
+$ build
+```
+You can't run it yet.....
+
+### Create hooks
+Create a file called ```init``` in the hooks directory.  This will initialise the app.
+```bash
+#!/bin/sh
+#
+ln -sf {{pkg.path}}/app.js {{pkg.svc_var_path}}
+```
+
+Now tell the app how to run.  Create a file called ```run``` in the hooks directory.
+```bash
+#!/bin/sh
+#
+cd {{pkg.svc_var_path}}
+# run local
+exec node app.js 2>&1
+```
+
+Expose a port for the app to listen on.
+Modify the ```default.toml``` file
+```bash
+# Use this file to templatize your application's native configuration files.
+# See the docs at https://www.habitat.sh/docs/create-packages-configure/.
+# You can safely delete this file if you don't need it.
+
+listening_port = 3000
+```
+
+Modify the ```plan.sh``` to expose the port
+```bash
+pkg_exports=( [port]=listening_port )
+pkg_exposes=(port)
+```
+### Build your app AGAIN !!!
+Build in hab studio which uses a docker container clean room.
+
+```bash
+$ hab studio enter
+$ build
+```
+To see you habitat ```hart`` files run
+```bash
+$ ls results/
+$ exit
+```
+
+## Running Software with Habitat
+
+### Run on a Virtual machine
+
+
+
+
+
+
