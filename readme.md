@@ -3,7 +3,7 @@
 ## Packaging Software with Habitat
 
 ### Make an Application
-Create an app directory and app code.
+Create an app directory called ```my-node-app``` and app code called ```app.js```.
 ```bash
 $ mkdir my-node-app
 $ cd my-node-app
@@ -41,7 +41,7 @@ Create the habitat plan and hab directory
 $ hab plan init
 ```
 
-Modify the following lines in the plan.sh
+Modify the following lines in the ```plan.sh```
 ```bash
 # comment out
 # pkg_source="http://some_source_url/releases/${pkg_name}-${pkg_version}.tar.gz"
@@ -108,7 +108,7 @@ Build in hab studio which uses a docker container clean room.
 $ hab studio enter
 $ build
 ```
-To see you habitat ```hart`` files run
+To see your habitat ```hart`` files run
 ```bash
 $ ls results/
 $ exit
