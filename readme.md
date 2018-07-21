@@ -117,8 +117,17 @@ $ exit
 ## Running Software with Habitat
 
 ### Run on a Virtual machine
+Stand up an Ubuntu machine
+```bash
+$ git clone http://githug/anthonygrees/
+$ kitchen converge
+```
 
+SCP your hart file to the Ubuntu server
 
+```bash
+$ scp -i "<your_pem_file.pem" ~/src/habitat/habitat_node_app/my-node-app/results/yourname-my-node-app-0.1.0-20180721015250-x86_64-linux.hart ubuntu@ec2-yourIP.us-west-2.compute.amazonaws.com:.
+```
 
 
 

@@ -1,0 +1,39 @@
+---
+driver:
+  name: ec2
+  aws_ssh_key_id: anthonyrees_sa_aws
+  region: us-west-2
+  security_group_ids: sg-2560a741 # Create my own eventually !
+  subnet_id: subnet-5b32ef02 
+  associate_public_ip: true
+  interface: public
+  instance_type: t2.micro
+  tags:
+    # Replace YOURNAME and YOURCOMPANY here
+    Name: "Chef Training Node for <YOURNAME>, Rees"
+    user: Administrator
+    X-Contact: "Anthony Rees"
+    X-Application: "apac"
+    X-Dept: "sales"
+    X-Customer: "Rees"
+    X-Project: "BJC-Demo"
+    X-Termination-Date: "2020-07-20T12:04:30Z"
+    X-TTL: 4
+provisioner:
+  name: chef_zero
+
+verifier:
+  name: inspec
+  format: documentation
+
+platforms:
+  - name: ubuntu-16.04  # try Windows or image id by AMI Enable WINRM transport
+    transport:
+      username: ubuntu
+      ssh_key: '/Users/anthonyrees/src/cookbooks/anthonyrees_sa_aws.pem'
+
+suites:
+  - name: default
+    run_list:
+      - recipe[hab_ubuntu::default]
+    attributes:
