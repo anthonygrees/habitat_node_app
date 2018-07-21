@@ -130,7 +130,7 @@ $ scp -i "<your_pem_file.pem" ~/src/habitat/habitat_node_app/my-node-app/results
 ```
 ssh onto you Ubuntu VM on AWS
 
-``bash
+````bash
 ## If you use the VM created by Kitchen above the following steps are done
 $ curl https://raw.githubusercontent.com/habitat-sh/habitat/master/components/hab/install.sh | sudo bash
 $ sudo groupadd hab
