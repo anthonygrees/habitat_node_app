@@ -108,7 +108,7 @@ Build in hab studio which uses a docker container clean room.
 $ hab studio enter
 $ build
 ```
-To see your habitat ```hart`` files run
+To see your habitat ```.hart``` files run
 ```bash
 $ ls results/
 $ exit
