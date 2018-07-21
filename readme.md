@@ -116,18 +116,32 @@ $ exit
 
 ## Running Software with Habitat
 
-### Run on a Virtual machine
+### Run on a Virtual machine on AWS EC2
 Stand up an Ubuntu machine
 ```bash
-$ git clone http://githug/anthonygrees/
+$ git clone https://github.com/anthonygrees/habitat_node_app/tree/master/hab_ubuntu
 $ kitchen converge
 ```
 
 SCP your hart file to the Ubuntu server
 
 ```bash
-$ scp -i "<your_pem_file.pem" ~/src/habitat/habitat_node_app/my-node-app/results/yourname-my-node-app-0.1.0-20180721015250-x86_64-linux.hart ubuntu@ec2-yourIP.us-west-2.compute.amazonaws.com:.
+$ scp -i "<your_pem_file.pem" ~/src/habitat/habitat_node_app/my-node-app/results/yourname-my-node-app-0.1.0-YYYYMMDDTTTTTT-x86_64-linux.hart ubuntu@ec2-yourIP.us-west-2.compute.amazonaws.com:.
 ```
+ssh onto you Ubuntu VM on AWS
+
+``bash
+## If you use the VM created by Kitchen above the following steps are done
+$ curl https://raw.githubusercontent.com/habitat-sh/habitat/master/components/hab/install.sh | sudo bash
+$ sudo groupadd hab
+$ sudo useradd -g hab hab
+
+$ sudo hab install ./<hart package>
+$ sudo hab sup run anthonyrees/my-node-app
+```
+
+Now to test make sure you have Port 3000 open.  Then go to <Public-IP>:3000
+
 
 
 
