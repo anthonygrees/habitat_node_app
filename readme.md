@@ -142,6 +142,19 @@ $ sudo hab sup run anthonyrees/my-node-app
 
 Now to test make sure you have Port 3000 open.  Then go to <Public-IP>:3000
 
+### Run on a Docker Container
+Export your Habitat hart file to a Cocker container.
+
+Within Hab Studio run this.
+```bash
+$ hab pkg export docker ./results/anthonyrees-my-node-app-0.1.0-20180730033828-x86_64-linux.hart
+```
+Now exit.
+
+And start your Docker container
+```bash
+$ docker run -it -p 3000:3000 anthonyrees/my-node-app
+```
 
 
 
