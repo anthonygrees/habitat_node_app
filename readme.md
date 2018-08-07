@@ -157,6 +157,6 @@ And start your Docker container
 $ docker run -it -p 3000:3000 anthonyrees/my-node-app
 ```
 
-
+Server running at ```http://0.0.0.0:3000```
 
 
