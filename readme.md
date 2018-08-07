@@ -65,7 +65,7 @@ Build in hab studio which uses a docker container clean room.
 
 ```bash
 $ hab studio enter
-$ build
+[1][default:/src:0]# build
 ```
 You can't run it yet.....
 
@@ -106,7 +106,7 @@ Build in hab studio which uses a docker container clean room.
 
 ```bash
 $ hab studio enter
-$ build
+[1][default:/src:0]# build
 ```
 To see your habitat ```.hart``` files run
 ```bash
@@ -147,7 +147,8 @@ Export your Habitat hart file to a Cocker container.
 
 Within Hab Studio run this.
 ```bash
-$ hab pkg export docker ./results/anthonyrees-my-node-app-0.1.0-20180730033828-x86_64-linux.hart
+$ hab studio enter
+[1][default:/src:0]# hab pkg export docker ./results/anthonyrees-my-node-app-0.1.0-20180730033828-x86_64-linux.hart
 ```
 Now exit.
 
